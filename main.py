@@ -1,5 +1,6 @@
-from guizero import App, PushButton, TextBox
+#from guizero import App, PushButton, TextBox
 from docx_tools import compose_docx
+from directories import find_files
 
 # def do_nothing():
 #     print(int(a.value) + int(b.value))
@@ -11,9 +12,14 @@ from docx_tools import compose_docx
 
 # app.display()
 
-files_to_compose = [
-    ('ee', '/home/igor/workspace/awtg/documents_all/2G-EE/Norfolk-2G-EE 140318.xlsx'),
-    ('ee', '/home/igor/workspace/awtg/documents_all/2G-EE/Norfolk-2G-EE 160318.xlsx')
-]
+path_to_root = '/home/igor/workspace/awtg/documents_all/'
+final_path = '/home/igor/workspace/awtg/processed/'
 
-compose_docx('demo1.docx', files_to_compose)
+files_by_tech = find_files(path_to_root)
+
+# for tech_plus_test in files_by_tech.keys():
+#     compose_docx(final_path + str(tech_plus_test) + '.docx',
+#         files_by_tech[tech_plus_test],
+#         tech_plus_test)
+
+compose_docx(final_path + str('2g') + '.docx', files_by_tech['2g'], '2g')
